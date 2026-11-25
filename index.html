@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PoseAI | Human Pose Detection</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+
+    <!-- ml5.js -->
+    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+        <a href="#home" class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-person-rays"></i>
+            </div>
+            <span>Pose<span class="highlight">AI</span></span>
+        </a>
+
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#detection">Detection</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            AI Powered
+        </div>
+
+    </header>
+
+
+    <main id="home">
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="tag">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    COMPUTER VISION PROJECT
+                </span>
+
+                <h1>
+                    Human Pose <br>
+                    <span>Detection System</span>
+                </h1>
+
+                <p>
+                    Experience real-time human pose estimation using
+                    Artificial Intelligence and Machine Learning.
+                    Detect body keypoints and visualize the human skeleton
+                    directly through your webcam.
+                </p>
+
+                <button id="detectBtn" class="primary-btn">
+                    Start Detection
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="visual-circle">
+                    <i class="fa-solid fa-person-running"></i>
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                </div>
+
+                <div class="floating-card">
+                    <span class="status-dot"></span>
+                    Real-time AI Analysis
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Detection Section -->
+        <section class="detection-section" id="detection">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="tag">LIVE ANALYSIS</span>
+
+                    <h2>Pose Detection Studio</h2>
+
+                    <p>
+                        Move in front of your camera to detect your body posture.
+                    </p>
+                </div>
+
+                <div class="live-badge">
+                    <span class="status-dot"></span>
+                    LIVE
+                </div>
+
+            </div>
+
+
+            <div class="studio">
+
+                <!-- Camera Card -->
+                <div class="camera-card">
+
+                    <div class="camera-header">
+
+                        <div class="camera-title">
+                            <i class="fa-solid fa-video"></i>
+                            Webcam Preview
+                        </div>
+
+                        <div class="camera-controls">
+
+                            <span class="camera-label">800 × 500</span>
+
+                            <button id="startCamera"
+                                    class="camera-btn start-btn">
+                                <i class="fa-solid fa-play"></i>
+                                Start
+                            </button>
+
+                            <button id="stopCamera"
+                                    class="camera-btn stop-btn"
+                                    disabled>
+                                <i class="fa-solid fa-stop"></i>
+                                Stop
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- p5.js Canvas Container -->
+                    <div id="canvas-container" class="canvas-container">
+
+                        <div class="camera-placeholder">
+
+                            <div class="placeholder-icon">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+
+                            <h3>Camera is currently off</h3>
+
+                            <p>
+                                Click Start Detection to activate your webcam.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Camera Footer -->
+                    <div class="camera-footer">
+
+                        <span>
+                            <i class="fa-solid fa-circle-check"></i>
+                            PoseNet Engine
+                        </span>
+
+                        <span id="cameraStatus">
+                            Camera Offline
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Information Panel -->
+                <aside class="info-panel">
+
+                    <div class="info-card">
+
+                        <div class="info-icon purple">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+
+                        <h3>AI Model</h3>
+                        <p>PoseNet</p>
+
+                        <span class="small-text">
+                            Machine Learning
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <div class="info-icon blue">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </div>
+
+                        <h3>Keypoint Detection</h3>
+                        <p>17 Body Points</p>
+
+                        <span class="small-text">
+                            Human Pose Estimation
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <div class="info-icon green">
+                            <i class="fa-solid fa-bone"></i>
+                        </div>
+
+                        <h3>Skeleton Tracking</h3>
+                        <p>Body Connections</p>
+
+                        <span class="small-text">
+                            Joint Visualization
+                        </span>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+
+            <div class="section-heading centered">
+
+                <span class="tag">ABOUT PROJECT</span>
+
+                <h2>How It Works</h2>
+
+                <p>
+                    Combining computer vision and machine learning.
+                </p>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+
+                    <h3>Camera Input</h3>
+
+                    <p>
+                        Captures live video from your webcam after permission.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+
+                    <h3>AI Processing</h3>
+
+                    <p>
+                        PoseNet identifies important human body points.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-person"></i>
+                    </div>
+
+                    <h3>Pose Visualization</h3>
+
+                    <p>
+                        Displays keypoints and skeleton connections in real time.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-logo">
+            <i class="fa-solid fa-person-rays highlight"></i>
+            PoseAI
+        </div>
+
+        <p>
+            Built with p5.js, ml5.js and Artificial Intelligence.
+        </p>
+
+        <span>
+            © 2026 Pose Detection System
+        </span>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
